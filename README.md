@@ -10,6 +10,19 @@ Description:	Ubuntu 20.04.2 LTS
 Release:	20.04
 Codename:	focal
 
+## inventory
+
+В файле инвентаря задаются адреса хостов где необходимо развернуть роль https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html
+
+## Подготовка
+
+```bash
+sudo apt install git python3-pip -y
+pip3 install -r requirements.txt
+git clone https://github.com/imbicile/imbicile.rabbit.git
+cd imbicile.rabbit/
+```
+
 ## Использование
 
 ```bash

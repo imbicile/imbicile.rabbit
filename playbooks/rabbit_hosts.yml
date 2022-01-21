@@ -1,0 +1,4 @@
+- hosts: rabbit_servers
+  become: true
+  roles:
+    - { role: imbicile.rabbit, tags: rabbit }
