@@ -5,10 +5,11 @@
 Так как в родном репозитарии поломаны зависимости то добавляется репозитарий erlang https://www.erlang-solutions.com
 
 ## Роль проверялась на дистрибутиве
-
+```
 Description: Ubuntu 20.04.2 LTS
 Release: 20.04
 Codename: focal
+```
 
 ## Переменные
 
