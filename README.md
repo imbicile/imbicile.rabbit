@@ -6,25 +6,37 @@
 
 ## Роль проверялась на дистрибутиве
 
-Description:	Ubuntu 20.04.2 LTS
-Release:	20.04
-Codename:	focal
+Description: Ubuntu 20.04.2 LTS
+Release: 20.04
+Codename: focal
+
+## Переменные
+
+ЗАводимые пользователи с паролями задаются в файле `roles/imbicile.rabbit/defaults/main.yml`
 
 ## inventory
 
-В файле инвентаря задаются адреса хостов где необходимо развернуть роль https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html
+В файле инвентаря задаются адреса хостов `ip:port` где необходимо развернуть роль https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html
 
 ## Подготовка
 
 ```bash
 sudo apt install git python3-pip -y
-pip3 install -r requirements.txt
 git clone https://github.com/imbicile/imbicile.rabbit.git
 cd imbicile.rabbit/
+pip3 install -r requirements.txt
 ```
 
 ## Использование
 
-```bash
+Для установки на локальных хост
 
+```bash
+~/.local/bin/ansible-playbook playbooks/rabbit_local.yml
+```
+
+Для установки на хост в сети
+
+```bash
+ ~/.local/bin/ansible-playbook playbooks/rabbit_hosts.yml
 ```
