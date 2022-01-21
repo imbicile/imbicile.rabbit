@@ -1,0 +1,53 @@
+---
+# tasks file for imbicile.rabbit
+
+# Add Packagecloud Rabbit repo
+# https://packagecloud.io/rabbitmq/rabbitmq-server
+- name: add packagecloud key
+  apt_key:
+    url: "https://packagecloud.io/rabbitmq/rabbitmq-server/gpgkey"
+    state: present
+
+- name: add packagecloud deb repository
+  apt_repository:
+    repo: "deb https://packagecloud.io/rabbitmq/rabbitmq-server/ubuntu/ {{ ansible_lsb.codename }} main"
+    filename: "packagecloud_deb"
+    state: present
+
+- name: add packagecloud src repository
+  apt_repository:
+    repo: "deb-src https://packagecloud.io/rabbitmq/rabbitmq-server/ubuntu/ {{ ansible_lsb.codename }} main"
+    filename: "packagecloud_src"
+    state: present
+
+# Add erlang repo
+# https://www.erlang-solutions.com/downloads/
+- name: add erlang key
+  apt_key:
+    url: "https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc"
+    state: present
+
+- name: add packagecloud deb repository
+  apt_repository:
+    repo: "deb http://binaries.erlang-solutions.com/debian {{ ansible_lsb.codename }} contrib"
+    filename: "erlang-solutions"
+    state: present
+
+# Install rabbitmq-server
+- name: install latest rabbitmq-server
+  apt:
+    name: rabbitmq-server
+    state: latest
+    update_cache: yes
+
+# Enable web
+- name: enable rabbitmq web
+  shell: |
+    rabbitmq-plugins enable rabbitmq_management
+
+# Add user and password
+- name: add rabbit users
+  shell: |
+    rabbitmqctl add_user {{ item.username }} {{ item.password }}
+    rabbitmqctl set_user_tags {{ item.username }} administrator
+  with_items: "{{ rabbitmq_users }}"

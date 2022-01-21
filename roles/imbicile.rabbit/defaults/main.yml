@@ -1,0 +1,10 @@
+---
+# defaults file for imbicile.rabbit
+rabbitmq_version: "3.9.13-1"
+rabbitmq_users: 
+  - username: "admin"
+    password: "123456"
+  - username: "admin_2"
+    password: "123456"
+  - username: "admin_3"
+    password: "123456"
